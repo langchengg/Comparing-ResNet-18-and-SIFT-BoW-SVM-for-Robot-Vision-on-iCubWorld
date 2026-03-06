@@ -326,6 +326,7 @@ def load_images_for_sift(
     images = []
     labels = []
     paths = []
+    failed_loads = 0
     
     n_samples = min(len(dataset), max_images) if max_images else len(dataset)
     
@@ -338,5 +339,11 @@ def load_images_for_sift(
             images.append(img)
             labels.append(dataset.samples[idx][1])
             paths.append(str(img_path))
+        else:
+            failed_loads += 1
+            logger.warning(f"Failed to load image: {img_path}")
+    
+    if failed_loads > 0:
+        logger.warning(f"Total images failed to load: {failed_loads}/{n_samples}")
     
     return images, labels, paths

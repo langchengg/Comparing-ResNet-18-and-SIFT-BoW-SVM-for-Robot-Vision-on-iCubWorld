@@ -36,6 +36,12 @@ from tqdm import tqdm
 from .utils import logger, timer, compute_metrics
 from .data_loader import ICubWorldDataset, FeatureCache
 
+# FLANN algorithm constants
+FLANN_INDEX_KDTREE = 1  # KD-tree index for FLANN matching
+
+from .utils import logger, timer, compute_metrics
+from .data_loader import ICubWorldDataset, FeatureCache
+
 
 class OptimizedSIFTExtractor:
     """
@@ -245,7 +251,6 @@ class OptimizedHistogramEncoder:
         
         # Build FLANN index for fast matching
         # OPTIMIZATION: KD-tree index is efficient for 128-dim SIFT
-        FLANN_INDEX_KDTREE = 1
         index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
         search_params = dict(checks=50)  # Trade-off between speed and accuracy
         

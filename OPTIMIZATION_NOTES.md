@@ -142,7 +142,7 @@ scaler.step(optimizer)
 scaler.update()
 ```
 
-**Improvement:** ~2x speedup and ~40% memory reduction on modern GPUs
+**Improvement:** ~2x speedup and ~40% memory reduction on GPUs with Tensor Cores (NVIDIA Volta architecture or newer: V100, RTX 20xx series, A100, etc.). On older GPUs without Tensor Cores, the speedup may be minimal.
 
 ---
 
